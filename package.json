@@ -1,0 +1,23 @@
+{
+  "name": "mrphy_srvr",
+  "version": "0.0.1",
+  "description": "A nodeJS app to host some projects",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/murpjack/mrphy_srvr.git"
+  },
+  "keywords": [
+    "express",
+    "typescript"
+  ],
+  "author": "Jack Murphy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/murpjack/mrphy_srvr/issues"
+  },
+  "homepage": "https://github.com/murpjack/mrphy_srvr#readme"
+}
