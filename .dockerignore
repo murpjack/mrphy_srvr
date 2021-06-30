@@ -1,0 +1,7 @@
+node_modules
+
+npm-debug.log
+
+# Just enough to get organised
+kanban.md
+README.md
