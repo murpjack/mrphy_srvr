@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "4001:4001"
+      - "3001:4001"
     env_file:
       - .env
     volumes:
