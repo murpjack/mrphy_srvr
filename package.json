@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "A nodeJS app to host some projects",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "compose": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml --compatibility up --build", 
+    "compose:dev": "docker-compose up --build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/murpjack/mrphy_srvr.git"

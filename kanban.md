@@ -1,15 +1,10 @@
 # kanban
 
 ## Not Started
-- [ ] Write tooling eg. compile, run, ...
 
 - [ ] Load successURI as index.html file
 
 - [ ] Style success page
-
-- [ ] Add TS to project 
-
-- [ ] Add env variables
 
 - [ ] Create local express server instance
 
@@ -19,19 +14,22 @@
 
 - [ ] Pass tokens to Extension
 
-- [ ] Write tests 
+- [ ] Write tests
 
-- [ ] Implement Docker container
-
-- [ ] Put mode app on to server (in Decker container) 
+- [ ] Put mode app on to server (in Decker container)
 
 ## In Progress
 
+- [ ] Write tooling eg. compile, run, ...
+- [ ] Add env variables
+- [ ] Implement Docker container
 
 ## Done
 
 ## Future
+
 - [ ] Improve performance
 - [ ] Write tests
 - [ ] Write a README file
 - [ ] Remove [.html] ending from success page in .htaccess
+- [ ] Add TS to project

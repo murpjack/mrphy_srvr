@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("./fonts/Josefin-Sans-Regular.woff2") format("woff2");
+}
+
+html,
+body {
+  font-family: "Josefin Sans";
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 50px 0px;
+  width: 90%;
+}
+
+.title,
+.subtitle,
+.text {
+  color: #1051f4;
+  line-height: 2em;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.title {
+  font-size: 70px;
+}
+
+.subtitle {
+  font-size: 50px;
+}
+
+.text {
+  font-size: 25px;
+  line-height: 1.4em;
+}

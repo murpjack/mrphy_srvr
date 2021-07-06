@@ -6,13 +6,10 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "3001:4001"
+      - "4001:4001"
+    environment:
+      DEVELOPMENT: "true"
     env_file:
       - .env
     volumes:
       - .:/main
-    restart: always
-    deploy:
-      resources:
-        limits:
-          memory: 128M
