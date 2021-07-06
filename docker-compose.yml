@@ -1,6 +1,7 @@
 version: "3"
 services:
   node:
+    hostname: mrphy.co.uk
     image: grapefruit/mrphy
     build:
       context: .
