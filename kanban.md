@@ -20,11 +20,13 @@
 
 ## In Progress
 
-- [ ] Write tooling eg. compile, run, ...
-- [ ] Add env variables
-- [ ] Implement Docker container
+- [ ] Optimize Docker container
 
 ## Done
+
+- [x] Write tooling eg. compile, run, ...
+- [x] Implement Docker container
+- [x] Add env variables
 
 ## Future
 
