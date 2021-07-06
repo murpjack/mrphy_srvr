@@ -3,24 +3,10 @@ services:
   node:
     ports:
       - 4001:4001
-    networks:
-      node_net:
-        ipv4_address: 159.65.48.78
-        # ipv6_address: 2a03:b0c0:1:d0::fa:1
     environment:
       PRODUCTION: "true"
-
     restart: always
     deploy:
       resources:
         limits:
           memory: 128M
-networks:
-  node_net:
-    driver: bridge
-    # enable_ipv6: true
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
-          gateway: 172.16.238.1

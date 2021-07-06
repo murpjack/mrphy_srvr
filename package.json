@@ -4,8 +4,8 @@
   "description": "A nodeJS app to host some projects",
   "main": "index.js",
   "scripts": {
-    "compose": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml --compatibility up --build", 
-    "compose:dev": "docker-compose up --build"
+    "compose": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build", 
+    "compose:dev": "docker-compose up -d --build"
   },
   "repository": {
     "type": "git",
