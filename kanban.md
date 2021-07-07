@@ -16,8 +16,6 @@
 
 - [ ] Write tests
 
-- [ ] Put mode app on to server (in Decker container)
-
 ## In Progress
 
 - [ ] Optimize Docker container
@@ -41,4 +39,4 @@
 - [ ] Write a README file
 - [ ] Remove [.html] ending from success page in .htaccess
 - [ ] Add TS to project
-- [ ] Add CI to project to automate tests, deploys, etc. (Travis) 
+- [ ] Add CI to project to automate tests, deploys, etc. (Travis)
