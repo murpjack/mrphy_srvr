@@ -6,8 +6,6 @@
 
 - [ ] Style success page
 
-- [ ] Create local express server instance
-
 - [ ] Endpoint to Authorise extension
 
 - [ ] Endpoint to get Access tokens
@@ -16,17 +14,18 @@
 
 - [ ] Write tests
 
-## In Progress
-
 - [ ] Optimize Docker container
 
-- [ ] (Send dummy response as html to test that calls work & no Cors or similar)
+## In Progress
 
-- [ ] Add git ssh to droplet
+- [ ] (Send dummy response as html to test that calls work & no Cors or similar)
 
 - [ ] Make & handle real response on reaching page with a code parameter
 
 ## Done
+
+- [x] Add git ssh to droplet
+- [x] Create local express server instance
 
 - [x] Write tooling eg. compile, run, ...
 - [x] Implement Docker container
