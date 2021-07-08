@@ -2,7 +2,7 @@
 const purifier = require("root-require")("./server/lib/routePurifier");
 const request = require("request");
 const Future = require("fluture");
-const { fork, map } = Future;
+const { map } = Future;
 
 // Request that returns a Future
 const postRequest = (url, options) =>
@@ -18,7 +18,7 @@ module.exports = (credentials, database, successAddress) => req => {
     const code = req.query.code;
     const userID = req.ip;
 
-    console.log(credentials, {database, code: req.query.code});
+    console.log({req, code});
     
     return postRequest("https://api.coinbase.com/oauth/token", {
         json: {
