@@ -16,6 +16,10 @@
 
 - [ ] Optimize Docker container
 
+- [ ] write githooks for CI:
+      pre-commit: run tests, 
+      post-commit: d stop/build/up
+
 ## In Progress
 
 - [ ] (Send dummy response as html to test that calls work & no Cors or similar)
