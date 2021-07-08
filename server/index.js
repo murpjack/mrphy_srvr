@@ -1,3 +1,5 @@
+require('dotenv').config({ path: './server/.env' });
+
 const Client = require("coinbase").Client;
 const credentials = require("root-require")("./credentials");
 const purifier = require("root-require")("./server/lib/routePurifier");

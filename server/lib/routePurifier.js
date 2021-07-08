@@ -1,4 +1,6 @@
 const assert = require("assert");
+const Future = require("fluture");
+const { fork, map } = Future;
 
 /**
  *  THIS FILE AIMS TO MAKE ROUTES PURE IN SOME WAY
@@ -75,7 +77,7 @@ const json = content => ({ type: types.JSON, content });
 const sendResponse = (routeHandler, req, res, nxt, err) =>
     routeHandler(req, res, err)
         // Add flash card
-        .map(response => {
+        .pipe(map(response => {
             if (response.flash !== undefined) {
                 assert(
                     Array.isArray(response.flash),
@@ -85,22 +87,22 @@ const sendResponse = (routeHandler, req, res, nxt, err) =>
             }
 
             return response;
-        })
+        }))
         // Set response status
-        .map(response => {
+        .pipe(map(response => {
             if (response.status !== undefined) {
                 res.status(response.status);
             }
 
             return response;
-        })
+        }))
         // Set response headers
-        .map(response => {
+        .pipe(map(response => {
             res.set(response.headers || {});
             return response;
-        })
+        }))
         /* eslint-disable complexity */
-        .fork(nxt, ({ type, template, path, locals, content, error }) => {
+        .pipe(fork(nxt) (({ type, template, path, locals, content, error }) => {
             /* eslint-enable complexity */
             const allLocals = Object.assign(res.locals, locals);
 
@@ -123,7 +125,7 @@ const sendResponse = (routeHandler, req, res, nxt, err) =>
             default:
                 nxt(`Invalid response type: ${type}`);
             }
-        });
+        }));
 
 const route = routeHandler => (req, res, nxt) =>
     sendResponse(routeHandler, req, res, nxt);
