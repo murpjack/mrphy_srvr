@@ -1,13 +1,11 @@
 const Client = require("coinbase").Client;
-const credentials = require("root-require")("./credentials.json");
+const credentials = require("root-require")("./credentials");
 const purifier = require("root-require")("./server/lib/routePurifier");
 const express = require("express");
 const routes = require("require-dir-all")("./routes", {
   recursive: true
 });
 
-
-// const { CLIENT_ID, CLIENT_SECRET, SUCCESS_URI } = process.env;
 
 const PORT = process.env.port || 4001;
 const app = express();
