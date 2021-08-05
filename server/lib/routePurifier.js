@@ -76,6 +76,8 @@ const json = content => ({ type: types.JSON, content });
 
 const sendResponse = (routeHandler, req, res, nxt, err) =>
     routeHandler(req, res, err)
+        // .pipe(map(r => {console.log(2,r); return r;}))    
+        // .pipe(fork (console.error) (x => x))
         // Add flash card
         .pipe(map(response => {
             if (response.flash !== undefined) {
@@ -102,30 +104,32 @@ const sendResponse = (routeHandler, req, res, nxt, err) =>
             return response;
         }))
         /* eslint-disable complexity */
-        .pipe(fork(nxt) (({ type, template, path, locals, content, error }) => {
-            /* eslint-enable complexity */
-            const allLocals = Object.assign(res.locals, locals);
+        .pipe(fork 
+            (error => console.log("PPPPPOOOOOOOOOPPPPP", {error})) 
+            (({ type, template, path, locals, content, error }) => {
+                /* eslint-enable complexity */
+                const allLocals = Object.assign(res.locals, locals);
 
-            switch (type) {
-            case types.REDIRECT:
-                res.redirect(path);
-                break;
-            case types.NEXT:
-                nxt(error);
-                break;
-            case types.RENDER:
-                res.render(template, allLocals);
-                break;
-            case types.CUSTOM:
-                res.send(content);
-                break;
-            case types.JSON:
-                res.json(content);
-                break;
-            default:
-                nxt(`Invalid response type: ${type}`);
-            }
-        }));
+                switch (type) {
+                case types.REDIRECT:
+                    res.redirect(path);
+                    break;
+                case types.NEXT:
+                    nxt(error);
+                    break;
+                case types.RENDER:
+                    res.render(template, allLocals);
+                    break;
+                case types.CUSTOM:
+                    res.send(content);
+                    break;
+                case types.JSON:
+                    res.json(content);
+                    break;
+                default:
+                    nxt(`Invalid response type: ${type}`);
+                }
+            }));
 
 const route = routeHandler => (req, res, nxt) =>
     sendResponse(routeHandler, req, res, nxt);

@@ -17,9 +17,9 @@ const database = {};
 
 // Make sure user is logged before calling a route
 const isLoggedIn = (req, res, next) => {
-  const userID = req.ip;
-  // const userID = req.get("X-USER-ID");
-  const userInfo = database[userID];
+  const userId = req.ip;
+  // const userId = req.get("X-USER-ID");
+  const userInfo = database[userId];
 
   if (!userInfo) {
     return res.status(401).send("Unauthorised: User not logged in");
@@ -36,25 +36,12 @@ app.use(express.static(`${__dirname}/static`, {
 
 // OAuth route
 app.get(
-  "/oauth",
-  purifier.route(routes.oauth(credentials, database, "/success.html"))
+  "/calypso/oauth",
+  purifier.route(routes.oauth(credentials, database, "/calypso/success"))
 );
 
 // Coinbase requests
-app.get("/accounts", isLoggedIn, purifier.route(routes.accounts));
-app.get("/rates", isLoggedIn, purifier.route(routes.rates));
-
-
-// app.use("/success*", function (req, _, next) {
-//   if(req.query.code) {
-
-//   } else {
-//     // TODO: Send a message to say no token > 
-//     // ?? Destroy Refresh token from storage?
-//     // OR do nothing
-//   }
-
-//   next();
-// });
+app.get("/calypso/accounts", isLoggedIn, purifier.route(routes.accounts));
+app.get("/calypso/rates", isLoggedIn, purifier.route(routes.rates));
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
