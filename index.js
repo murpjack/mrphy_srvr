@@ -1,8 +1,8 @@
-require('dotenv').config({ path: './server/.env' });
+require('dotenv').config({ path: './.env' });
 
 const Client = require("coinbase").Client;
 const credentials = require("root-require")("./credentials");
-const purifier = require("root-require")("./server/lib/routePurifier");
+const purifier = require("root-require")("./lib/routePurifier");
 const express = require("express");
 const routes = require("require-dir-all")("./routes", {
   recursive: true

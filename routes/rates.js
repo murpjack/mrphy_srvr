@@ -1,4 +1,4 @@
-const purifier = require("root-require")("./server/lib/routePurifier");
+const purifier = require("root-require")("./lib/routePurifier");
 const Future = require("fluture");
 const { traverse } = require("ramda");
 

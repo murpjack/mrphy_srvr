@@ -1,7 +1,6 @@
 
-const purifier = require("root-require")("./server/lib/routePurifier");
+const purifier = require("root-require")("./lib/routePurifier");
 const axios = require( "axios" );
-// const request = require( "superagent" );
 const Future = require("fluture");
 const { map } = Future;
 
