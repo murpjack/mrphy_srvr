@@ -36,12 +36,12 @@ app.use(express.static(`${__dirname}/static`, {
 
 // OAuth route
 app.get(
-  "/calypso/oauth",
-  purifier.route(routes.oauth(credentials, database, "/calypso/success"))
+  "/oauth",
+  purifier.route(routes.oauth(credentials, database, "/success"))
 );
 
 // Coinbase requests
-app.get("/calypso/accounts", isLoggedIn, purifier.route(routes.accounts));
-app.get("/calypso/rates", isLoggedIn, purifier.route(routes.rates));
+app.get("/accounts", isLoggedIn, purifier.route(routes.accounts));
+app.get("/rates", isLoggedIn, purifier.route(routes.rates));
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
