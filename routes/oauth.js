@@ -5,25 +5,35 @@ const Future = require("fluture");
 const { map } = Future;
 
 // Request that returns a Future
-const requestF = Future.encaseP(axios);
+const postF = Future.encaseP(axios.post);
+
+
 
 module.exports = (credentials, database, successAddress) => req => {
     const code = req.query.code;
     const userId = req.ip;
     // const userId = req.get("X-USER-ID");
     // console.log("userId ", userId)
+    const url =
+    `https://api.coinbase.com/oauth/token` +
+    `?grant_type=authorization_code` +
+    `&code=${code}` +
+    `&client_id=${credentials.clientId}` +
+    `&client_secret=${credentials.clientSecret}` +
+    `&redirect_uri=${credentials.successUri}`;
+     
+    const options = {
+    method: "POST",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "CB-Version": "2019-12-12"
+    }
+    };
     
-    return requestF({
-            method: "POST",
-            url: "https://api.coinbase.com/oauth/token",
-            grant_type: "authorization_code",
-            code,
-            client_id: credentials.clientId,
-            client_secret: credentials.clientSecret,
-            redirect_uri: credentials.successUri    
-        })
-        // .pipe(map(r => {console.log(r); return r;}))    
-        .pipe(map(res => {
+    return postF(url, options)
+    // .pipe(map(r => {console.log(r); return r;}))    
+    .pipe(map(res => {
+            console.log(1, url, 2, options); 
             database[userId] = {
                 accessToken: res.body.access_token,
                 refresh_token: res.body.refresh_token
