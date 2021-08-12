@@ -6,7 +6,3 @@ services:
     environment:
       PRODUCTION: "true"
     restart: always
-    deploy:
-      resources:
-        limits:
-          memory: 128M
