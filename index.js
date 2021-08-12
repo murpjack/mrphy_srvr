@@ -12,6 +12,10 @@ const routes = require("require-dir-all")("./routes", {
 const PORT = process.env.port || 4001;
 const app = express();
 
+/** Express server/web best practices. */
+const helmet = require('helmet')
+app.use(helmet())
+
 // For now we are using an in-memory database to simplify things
 const database = {};
 
