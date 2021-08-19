@@ -26,20 +26,18 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
   };
 
   //   return Future.encaseP(fetch)("https://api.github.com", {})
-  return (
-    Future.encaseP(fetch)(url, options)
-      // .pipe(chain(encaseP((res) => res.json())))
-      .pipe(
-        map((body) => {
-          database[userId] = {
-            accessToken: body.access_token || "123",
-            refresh_token: body.refresh_token || "456",
-          };
-          res.header("Content-Type", "application/json");
-          res.send(JSON.stringify(body, null, 4));
-          return body;
-        })
-      )
-      .pipe(map((_) => purifier.respond.redirect({ path: successAddress })))
-  );
+  return Future.encaseP(fetch)(url, options)
+    .pipe(chain(encaseP((res) => res.json())))
+    .pipe(
+      map((body) => {
+        database[userId] = {
+          accessToken: body.access_token || "123",
+          refresh_token: body.refresh_token || "456",
+        };
+        res.header("Content-Type", "application/json");
+        res.send(JSON.stringify(body, null, 4));
+        return body;
+      })
+    )
+    .pipe(map((_) => purifier.respond.redirect({ path: successAddress })));
 };
