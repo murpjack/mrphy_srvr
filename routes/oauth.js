@@ -35,10 +35,12 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
             accessToken: body.access_token || "123",
             refresh_token: body.refresh_token || "456",
           };
-          console.log({ body });
+          //   res.header("Content-Type", "application/json");
+          //   res.send(JSON.stringify(body, null, 4));
           return body;
         })
       )
-      .pipe(map((_) => purifier.respond.redirect({ path: successAddress })))
+      .pipe(map((body) => purifier.respond.json({ body })))
+    //   .pipe(map((_) => purifier.respond.redirect({ path: successAddress })))
   );
 };
