@@ -39,7 +39,7 @@ app.use(express.static(`${__dirname}/static`, {
   }));
 
 // OAuth route
-app.post(
+app.get(
   "/oauth",
   purifier.route(routes.oauth(credentials, database, "/success"))
 );
