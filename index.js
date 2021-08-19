@@ -1,5 +1,5 @@
 require("dotenv").config({ path: "./.env" });
-
+const cors = require("cors");
 const Client = require("coinbase").Client;
 const credentials = require("root-require")("./credentials");
 const purifier = require("root-require")("./lib/routePurifier");
@@ -8,12 +8,22 @@ const routes = require("require-dir-all")("./routes", {
   recursive: true,
 });
 
+const fetch = require("node-fetch");
+const Future = require("fluture");
+const { map, chain, encaseP, fork } = Future;
+
 const PORT = process.env.port || 4001;
 const app = express();
 
 /** Express server/web best practices. */
 const helmet = require("helmet");
 app.use(helmet());
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // For now we are using an in-memory database to simplify things
 const database = {};
@@ -42,7 +52,7 @@ app.use(
 // OAuth route
 app.get(
   "/oauth",
-  // purifier.route(routes.oauth(credentials, database, "/success"))
+  purifier.route(routes.oauth(credentials, database, "/success"))
 );
 
 // Coinbase requests
