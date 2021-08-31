@@ -7,23 +7,7 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
   const code = req.query.code;
   const userId = req.ip;
 
-  // const url =
-  //   'https://api.coinbase.com/oauth/token' +
-  //   `?grant_type=authorization_code` +
-  //   `&code=${code}` +
-  //   `&client_id=${credentials.clientId}` +
-  //   `&client_secret=${credentials.clientSecret}` +
-  //   `&redirect_uri=${credentials.successUri}`;
-
   const url = 'https://api.coinbase.com/oauth/token';
-  // // prettier-ignore
-  // const body = {
-  //   grant_type: 'authorization_code',
-  //   code: code,
-  //   client_id: credentials.clientId,
-  //   client_secret: credentials.clientSecret,
-  //   redirect_uri: credentials.successUri,
-  // };
 
   const options = {
     method: 'POST',
@@ -42,15 +26,21 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
   };
 
   return Future.encaseP(fetch)(url, options)
-    .pipe(chain(encaseP((res) => res.text())))
+    .pipe(
+      chain(
+        encaseP((response) => {
+          res.header('Content-Type', 'application/json');
+          res.send({ options, status: response.status });
+          return response.text();
+        })
+      )
+    )
     .pipe(
       map((data) => {
         database[userId] = {
           accessToken: data.access_token || '123',
           refresh_token: data.refresh_token || '456',
         };
-        res.header('Content-Type', 'application/json');
-        res.send({ options, data });
         return data;
       })
     )
