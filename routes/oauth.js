@@ -30,7 +30,7 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
       chain(
         encaseP((response) => {
           res.header('Content-Type', 'application/json');
-          res.send({ options, status: response.status });
+          res.send({ options, res, response });
           return response.text();
         })
       )
