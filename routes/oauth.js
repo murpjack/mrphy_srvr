@@ -32,7 +32,7 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
           res.header('Content-Type', 'application/json');
           res.send({
             options,
-            // status: response.status,
+            status: response.status,
             // sText: response.statusText,
             response,
           });
