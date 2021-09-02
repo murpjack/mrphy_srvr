@@ -32,28 +32,29 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
     // }),
   };
 
-  return (
-    Future.encaseP(fetch)(url, options)
-      // .pipe(chain(encaseP((response) => response.text())))
-      .pipe(
-        map((response) => {
-          return response;
-        })
-      )
-      .pipe(
-        map((data) => {
-          database[userId] = {
-            accessToken: data.access_token || '123',
-            refresh_token: data.refresh_token || '456',
-          };
+  return Future.encaseP(fetch)(url, options)
+    .pipe(
+      chain(
+        encaseP((response) => {
           res.header('Content-Type', 'application/json');
           res.send({
             options,
-            data,
+            status: response.status,
+            err: response.errors,
           });
-          return data;
+          return response.text();
         })
       )
-      .pipe(map((_) => purifier.respond.redirect({ path: successAddress })))
-  );
+    )
+    .pipe(
+      map((data) => {
+        database[userId] = {
+          accessToken: data.access_token || '123',
+          refresh_token: data.refresh_token || '456',
+        };
+
+        return data;
+      })
+    )
+    .pipe(map((_) => purifier.respond.redirect({ path: successAddress })));
 };
