@@ -33,7 +33,7 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
           res.send({
             options,
             status: response.status,
-            // sText: response.statusText,
+            sText: response.statusText,
             response,
           });
           return response.text();
