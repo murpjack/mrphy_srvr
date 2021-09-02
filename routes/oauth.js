@@ -32,8 +32,9 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
           res.header('Content-Type', 'application/json');
           res.send({
             options,
-            status: response.status,
-            sText: response.statusText,
+            // status: response.status,
+            // sText: response.statusText,
+            response,
           });
           return response.text();
         })
