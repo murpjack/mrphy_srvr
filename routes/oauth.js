@@ -19,8 +19,8 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
   const options = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      // 'Access-Control-Allow-Origin': '*',
+      // 'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
       'CB-Version': '2019-12-12',
     },
     // body: JSON.stringify({
