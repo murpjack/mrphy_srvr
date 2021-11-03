@@ -1,8 +1,3 @@
-const purifier = require('root-require')('./lib/routePurifier');
-const Future = require('fluture');
-const { map, chain, encaseP } = Future;
-const fetch = require('node-fetch');
-
 module.exports = (credentials) => (_, res) => {
   const url =
     `https://www.coinbase.com/oauth/authorize` +
