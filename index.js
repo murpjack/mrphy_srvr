@@ -42,6 +42,8 @@ app.use(
   })
 );
 
+app.get('/authorise', purifier.route(routes.authorise(credentials)));
+
 // OAuth route
 app.get(
   '/oauth',
