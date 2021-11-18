@@ -18,18 +18,18 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
 
   const options = {
     method: 'POST',
-    headers: {
-      // 'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'CB-Version': '2019-12-12',
-    },
-    // body: JSON.stringify({
-    //   grant_type: 'authorization_code',
-    //   code: code,
-    //   client_id: credentials.clientId,
-    //   client_secret: credentials.clientSecret,
-    //   redirect_uri: credentials.successUri,
-    // }),
+    // headers: {
+    // 'Content-Type': 'application/json',
+    // 'Access-Control-Allow-Origin': '*',
+    // 'CB-Version': '2019-12-12',
+    // },
+    body: JSON.stringify({
+      grant_type: 'authorization_code',
+      code: code,
+      client_id: credentials.clientId,
+      client_secret: credentials.clientSecret,
+      redirect_uri: credentials.successUri,
+    }),
   };
 
   return Future.encaseP(fetch)(url, options)
@@ -38,6 +38,7 @@ module.exports = (credentials, database, successAddress) => (req, res) => {
         encaseP((response) => {
           res.header('Content-Type', 'application/json');
           res.send({
+            url,
             options,
             status: response.status,
             err: response.errors,
