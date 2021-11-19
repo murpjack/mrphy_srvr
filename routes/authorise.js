@@ -35,7 +35,7 @@ module.exports = (credentials) => (_, res) => {
     '&scope=' +
     permissions.join() +
     '&account=all' +
-    '&meta[send_limit_amount]=20' +
+    '&meta[send_limit_amount]=1' +
     '&meta[send_limit_currency]=USD' +
     '&meta[send_limit_period]=day';
 
