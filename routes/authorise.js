@@ -34,7 +34,10 @@ module.exports = (credentials) => (_, res) => {
     '&response_type=code' +
     '&scope=' +
     permissions.join() +
-    '&account=all';
+    '&account=all' +
+    '&meta[send_limit_amount]=20' +
+    '&meta[send_limit_currency]=USD' +
+    '&meta[send_limit_period]=day';
 
   return res.redirect(url);
 };
